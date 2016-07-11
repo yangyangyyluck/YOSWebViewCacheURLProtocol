@@ -532,6 +532,7 @@
 				DDC87CDE1D3388BD00E39693 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DDC87CDF1D3388BD00E39693 /* Build configuration list for PBXNativeTarget "YOSWebViewCacheURLProtocolTests" */ = {
 			isa = XCConfigurationList;
@@ -540,6 +541,7 @@
 				DDC87CE11D3388BD00E39693 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DDC87CE21D3388BD00E39693 /* Build configuration list for PBXNativeTarget "YOSWebViewCacheURLProtocolUITests" */ = {
 			isa = XCConfigurationList;
@@ -548,6 +550,7 @@
 				DDC87CE41D3388BD00E39693 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

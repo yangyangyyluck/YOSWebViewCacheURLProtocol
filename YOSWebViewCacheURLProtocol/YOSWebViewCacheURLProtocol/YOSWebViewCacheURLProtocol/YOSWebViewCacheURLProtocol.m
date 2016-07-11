@@ -114,7 +114,7 @@ static NSMutableDictionary *httpHeaders;
     // case1. network not reachable
     // case2. image request use cache
     BOOL status1 = ![YOSWebViewCacheURLProtocol _isNetworkReachable:self.request];
-    BOOL status2 = [YOSWebViewCacheURLProtocol _isImage:self.request] && [YOSWebViewCacheURLProtocol _isCached:self.request];
+    BOOL status2 =  ([YOSWebViewCacheURLProtocol _isImage:self.request] && [YOSWebViewCacheURLProtocol _isCached:self.request]);
     if (status1 || status2) {
         
         YOSWebViewCache *cache = [YOSWebViewCacheURLProtocol _getCache:[YOSWebViewCacheURLProtocol _requestPath:self.request]];
@@ -145,9 +145,7 @@ static NSMutableDictionary *httpHeaders;
 {
     // Thanks to Nick Dowell https://gist.github.com/1885821
     if (response != nil) {
-        NSMutableURLRequest *redirectableRequest = [YOSWebViewCacheURLProtocol _requestWithAdditionHeaders:self.request];
-        
-        [NSURLProtocol setProperty:@YES forKey:YOSWebViewCacheURLProtocolHasHandledKey inRequest:redirectableRequest];
+        NSMutableURLRequest *redirectableRequest = [request mutableCopyWorkaround];
         
         NSString *cachePath = [YOSWebViewCacheURLProtocol _requestPath:self.request];
         
@@ -156,6 +154,14 @@ static NSMutableDictionary *httpHeaders;
         cache.response = response;
         cache.data = self.data;
         cache.redirectRequest = redirectableRequest;
+        
+        BOOL hasHandled = [YOSWebViewCacheURLProtocol propertyForKey:YOSWebViewCacheURLProtocolHasHandledKey inRequest:request];
+        
+        BOOL hasHandled2 = [YOSWebViewCacheURLProtocol propertyForKey:YOSWebViewCacheURLProtocolHasHandledKey inRequest:redirectableRequest];
+        
+//        [YOSWebViewCacheURLProtocol setProperty:@NO forKey:YOSWebViewCacheURLProtocolHasHandledKey inRequest:redirectableRequest];
+        
+        NSLog(@"\r\rpropertyForKey in willSendRequest 1:%zi --- 2:%zi \r\r", hasHandled, hasHandled2);
         
         [YOSWebViewCacheURLProtocol _saveCache:cache path:cachePath];
         
@@ -209,7 +215,14 @@ static NSMutableDictionary *httpHeaders;
     if (cache) {
         NSData *data = cache.data;;
         NSURLResponse *response = cache.response;
-        NSURLRequest *redirectRequest = cache.redirectRequest;
+        NSMutableURLRequest *redirectRequest = [cache.redirectRequest mutableCopyWorkaround];
+        
+//        [YOSWebViewCacheURLProtocol setProperty:@"god" forKey:YOSWebViewCacheURLProtocolHasHandledKey inRequest:redirectRequest];
+        
+        BOOL hasHandled = [YOSWebViewCacheURLProtocol propertyForKey:YOSWebViewCacheURLProtocolHasHandledKey inRequest:redirectRequest];
+        
+        NSLog(@"\r\rpropertyForKey in _dealWithCache 1:%zi ---  \r\r", hasHandled);
+        
         if (redirectRequest) {
             [[self client] URLProtocol:self wasRedirectedToRequest:redirectRequest redirectResponse:response];
         } else {
@@ -238,6 +251,8 @@ static NSMutableDictionary *httpHeaders;
 #pragma mark - private methods+
 
 + (NSMutableURLRequest *)_requestWithAdditionHeaders:(NSURLRequest *)request {
+    
+    BOOL hasHandled = [YOSWebViewCacheURLProtocol propertyForKey:YOSWebViewCacheURLProtocolHasHandledKey inRequest:request];
     
     NSMutableURLRequest *connectionRequest = nil;
     
