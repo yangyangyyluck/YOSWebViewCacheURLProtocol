@@ -1,0 +1,555 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DDC87CB41D3388BD00E39693 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC87CB31D3388BD00E39693 /* main.m */; };
+		DDC87CB71D3388BD00E39693 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC87CB61D3388BD00E39693 /* AppDelegate.m */; };
+		DDC87CBA1D3388BD00E39693 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC87CB91D3388BD00E39693 /* ViewController.m */; };
+		DDC87CBD1D3388BD00E39693 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDC87CBB1D3388BD00E39693 /* Main.storyboard */; };
+		DDC87CBF1D3388BD00E39693 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDC87CBE1D3388BD00E39693 /* Assets.xcassets */; };
+		DDC87CC21D3388BD00E39693 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDC87CC01D3388BD00E39693 /* LaunchScreen.storyboard */; };
+		DDC87CCD1D3388BD00E39693 /* YOSWebViewCacheURLProtocolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC87CCC1D3388BD00E39693 /* YOSWebViewCacheURLProtocolTests.m */; };
+		DDC87CD81D3388BD00E39693 /* YOSWebViewCacheURLProtocolUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC87CD71D3388BD00E39693 /* YOSWebViewCacheURLProtocolUITests.m */; };
+		DDC87CEE1D3388E600E39693 /* NSString+YOSCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC87CE71D3388E600E39693 /* NSString+YOSCrypto.m */; };
+		DDC87CEF1D3388E600E39693 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC87CE91D3388E600E39693 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DDC87CF01D3388E600E39693 /* YOSWebViewCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC87CEB1D3388E600E39693 /* YOSWebViewCache.m */; };
+		DDC87CF11D3388E600E39693 /* YOSWebViewCacheURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC87CED1D3388E600E39693 /* YOSWebViewCacheURLProtocol.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DDC87CC91D3388BD00E39693 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DDC87CA71D3388BD00E39693 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DDC87CAE1D3388BD00E39693;
+			remoteInfo = YOSWebViewCacheURLProtocol;
+		};
+		DDC87CD41D3388BD00E39693 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DDC87CA71D3388BD00E39693 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DDC87CAE1D3388BD00E39693;
+			remoteInfo = YOSWebViewCacheURLProtocol;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DDC87CAF1D3388BD00E39693 /* YOSWebViewCacheURLProtocol.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YOSWebViewCacheURLProtocol.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDC87CB31D3388BD00E39693 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DDC87CB51D3388BD00E39693 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DDC87CB61D3388BD00E39693 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DDC87CB81D3388BD00E39693 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		DDC87CB91D3388BD00E39693 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DDC87CBC1D3388BD00E39693 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DDC87CBE1D3388BD00E39693 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DDC87CC11D3388BD00E39693 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DDC87CC31D3388BD00E39693 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDC87CC81D3388BD00E39693 /* YOSWebViewCacheURLProtocolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YOSWebViewCacheURLProtocolTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDC87CCC1D3388BD00E39693 /* YOSWebViewCacheURLProtocolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YOSWebViewCacheURLProtocolTests.m; sourceTree = "<group>"; };
+		DDC87CCE1D3388BD00E39693 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDC87CD31D3388BD00E39693 /* YOSWebViewCacheURLProtocolUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YOSWebViewCacheURLProtocolUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDC87CD71D3388BD00E39693 /* YOSWebViewCacheURLProtocolUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YOSWebViewCacheURLProtocolUITests.m; sourceTree = "<group>"; };
+		DDC87CD91D3388BD00E39693 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDC87CE61D3388E600E39693 /* NSString+YOSCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+YOSCrypto.h"; sourceTree = "<group>"; };
+		DDC87CE71D3388E600E39693 /* NSString+YOSCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+YOSCrypto.m"; sourceTree = "<group>"; };
+		DDC87CE81D3388E600E39693 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		DDC87CE91D3388E600E39693 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		DDC87CEA1D3388E600E39693 /* YOSWebViewCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOSWebViewCache.h; sourceTree = "<group>"; };
+		DDC87CEB1D3388E600E39693 /* YOSWebViewCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOSWebViewCache.m; sourceTree = "<group>"; };
+		DDC87CEC1D3388E600E39693 /* YOSWebViewCacheURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOSWebViewCacheURLProtocol.h; sourceTree = "<group>"; };
+		DDC87CED1D3388E600E39693 /* YOSWebViewCacheURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOSWebViewCacheURLProtocol.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DDC87CAC1D3388BD00E39693 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDC87CC51D3388BD00E39693 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDC87CD01D3388BD00E39693 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DDC87CA61D3388BD00E39693 = {
+			isa = PBXGroup;
+			children = (
+				DDC87CB11D3388BD00E39693 /* YOSWebViewCacheURLProtocol */,
+				DDC87CCB1D3388BD00E39693 /* YOSWebViewCacheURLProtocolTests */,
+				DDC87CD61D3388BD00E39693 /* YOSWebViewCacheURLProtocolUITests */,
+				DDC87CB01D3388BD00E39693 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DDC87CB01D3388BD00E39693 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DDC87CAF1D3388BD00E39693 /* YOSWebViewCacheURLProtocol.app */,
+				DDC87CC81D3388BD00E39693 /* YOSWebViewCacheURLProtocolTests.xctest */,
+				DDC87CD31D3388BD00E39693 /* YOSWebViewCacheURLProtocolUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DDC87CB11D3388BD00E39693 /* YOSWebViewCacheURLProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				DDC87CE51D3388E600E39693 /* YOSWebViewCacheURLProtocol */,
+				DDC87CB51D3388BD00E39693 /* AppDelegate.h */,
+				DDC87CB61D3388BD00E39693 /* AppDelegate.m */,
+				DDC87CB81D3388BD00E39693 /* ViewController.h */,
+				DDC87CB91D3388BD00E39693 /* ViewController.m */,
+				DDC87CBB1D3388BD00E39693 /* Main.storyboard */,
+				DDC87CBE1D3388BD00E39693 /* Assets.xcassets */,
+				DDC87CC01D3388BD00E39693 /* LaunchScreen.storyboard */,
+				DDC87CC31D3388BD00E39693 /* Info.plist */,
+				DDC87CB21D3388BD00E39693 /* Supporting Files */,
+			);
+			path = YOSWebViewCacheURLProtocol;
+			sourceTree = "<group>";
+		};
+		DDC87CB21D3388BD00E39693 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DDC87CB31D3388BD00E39693 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DDC87CCB1D3388BD00E39693 /* YOSWebViewCacheURLProtocolTests */ = {
+			isa = PBXGroup;
+			children = (
+				DDC87CCC1D3388BD00E39693 /* YOSWebViewCacheURLProtocolTests.m */,
+				DDC87CCE1D3388BD00E39693 /* Info.plist */,
+			);
+			path = YOSWebViewCacheURLProtocolTests;
+			sourceTree = "<group>";
+		};
+		DDC87CD61D3388BD00E39693 /* YOSWebViewCacheURLProtocolUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DDC87CD71D3388BD00E39693 /* YOSWebViewCacheURLProtocolUITests.m */,
+				DDC87CD91D3388BD00E39693 /* Info.plist */,
+			);
+			path = YOSWebViewCacheURLProtocolUITests;
+			sourceTree = "<group>";
+		};
+		DDC87CE51D3388E600E39693 /* YOSWebViewCacheURLProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				DDC87CE61D3388E600E39693 /* NSString+YOSCrypto.h */,
+				DDC87CE71D3388E600E39693 /* NSString+YOSCrypto.m */,
+				DDC87CE81D3388E600E39693 /* Reachability.h */,
+				DDC87CE91D3388E600E39693 /* Reachability.m */,
+				DDC87CEA1D3388E600E39693 /* YOSWebViewCache.h */,
+				DDC87CEB1D3388E600E39693 /* YOSWebViewCache.m */,
+				DDC87CEC1D3388E600E39693 /* YOSWebViewCacheURLProtocol.h */,
+				DDC87CED1D3388E600E39693 /* YOSWebViewCacheURLProtocol.m */,
+			);
+			path = YOSWebViewCacheURLProtocol;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DDC87CAE1D3388BD00E39693 /* YOSWebViewCacheURLProtocol */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDC87CDC1D3388BD00E39693 /* Build configuration list for PBXNativeTarget "YOSWebViewCacheURLProtocol" */;
+			buildPhases = (
+				DDC87CAB1D3388BD00E39693 /* Sources */,
+				DDC87CAC1D3388BD00E39693 /* Frameworks */,
+				DDC87CAD1D3388BD00E39693 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YOSWebViewCacheURLProtocol;
+			productName = YOSWebViewCacheURLProtocol;
+			productReference = DDC87CAF1D3388BD00E39693 /* YOSWebViewCacheURLProtocol.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DDC87CC71D3388BD00E39693 /* YOSWebViewCacheURLProtocolTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDC87CDF1D3388BD00E39693 /* Build configuration list for PBXNativeTarget "YOSWebViewCacheURLProtocolTests" */;
+			buildPhases = (
+				DDC87CC41D3388BD00E39693 /* Sources */,
+				DDC87CC51D3388BD00E39693 /* Frameworks */,
+				DDC87CC61D3388BD00E39693 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DDC87CCA1D3388BD00E39693 /* PBXTargetDependency */,
+			);
+			name = YOSWebViewCacheURLProtocolTests;
+			productName = YOSWebViewCacheURLProtocolTests;
+			productReference = DDC87CC81D3388BD00E39693 /* YOSWebViewCacheURLProtocolTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DDC87CD21D3388BD00E39693 /* YOSWebViewCacheURLProtocolUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDC87CE21D3388BD00E39693 /* Build configuration list for PBXNativeTarget "YOSWebViewCacheURLProtocolUITests" */;
+			buildPhases = (
+				DDC87CCF1D3388BD00E39693 /* Sources */,
+				DDC87CD01D3388BD00E39693 /* Frameworks */,
+				DDC87CD11D3388BD00E39693 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DDC87CD51D3388BD00E39693 /* PBXTargetDependency */,
+			);
+			name = YOSWebViewCacheURLProtocolUITests;
+			productName = YOSWebViewCacheURLProtocolUITests;
+			productReference = DDC87CD31D3388BD00E39693 /* YOSWebViewCacheURLProtocolUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DDC87CA71D3388BD00E39693 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = yy.inc;
+				TargetAttributes = {
+					DDC87CAE1D3388BD00E39693 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					DDC87CC71D3388BD00E39693 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = DDC87CAE1D3388BD00E39693;
+					};
+					DDC87CD21D3388BD00E39693 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = DDC87CAE1D3388BD00E39693;
+					};
+				};
+			};
+			buildConfigurationList = DDC87CAA1D3388BD00E39693 /* Build configuration list for PBXProject "YOSWebViewCacheURLProtocol" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DDC87CA61D3388BD00E39693;
+			productRefGroup = DDC87CB01D3388BD00E39693 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DDC87CAE1D3388BD00E39693 /* YOSWebViewCacheURLProtocol */,
+				DDC87CC71D3388BD00E39693 /* YOSWebViewCacheURLProtocolTests */,
+				DDC87CD21D3388BD00E39693 /* YOSWebViewCacheURLProtocolUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DDC87CAD1D3388BD00E39693 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDC87CC21D3388BD00E39693 /* LaunchScreen.storyboard in Resources */,
+				DDC87CBF1D3388BD00E39693 /* Assets.xcassets in Resources */,
+				DDC87CBD1D3388BD00E39693 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDC87CC61D3388BD00E39693 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDC87CD11D3388BD00E39693 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DDC87CAB1D3388BD00E39693 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDC87CF01D3388E600E39693 /* YOSWebViewCache.m in Sources */,
+				DDC87CBA1D3388BD00E39693 /* ViewController.m in Sources */,
+				DDC87CB71D3388BD00E39693 /* AppDelegate.m in Sources */,
+				DDC87CEE1D3388E600E39693 /* NSString+YOSCrypto.m in Sources */,
+				DDC87CB41D3388BD00E39693 /* main.m in Sources */,
+				DDC87CEF1D3388E600E39693 /* Reachability.m in Sources */,
+				DDC87CF11D3388E600E39693 /* YOSWebViewCacheURLProtocol.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDC87CC41D3388BD00E39693 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDC87CCD1D3388BD00E39693 /* YOSWebViewCacheURLProtocolTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDC87CCF1D3388BD00E39693 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDC87CD81D3388BD00E39693 /* YOSWebViewCacheURLProtocolUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DDC87CCA1D3388BD00E39693 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DDC87CAE1D3388BD00E39693 /* YOSWebViewCacheURLProtocol */;
+			targetProxy = DDC87CC91D3388BD00E39693 /* PBXContainerItemProxy */;
+		};
+		DDC87CD51D3388BD00E39693 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DDC87CAE1D3388BD00E39693 /* YOSWebViewCacheURLProtocol */;
+			targetProxy = DDC87CD41D3388BD00E39693 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DDC87CBB1D3388BD00E39693 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DDC87CBC1D3388BD00E39693 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DDC87CC01D3388BD00E39693 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DDC87CC11D3388BD00E39693 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DDC87CDA1D3388BD00E39693 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DDC87CDB1D3388BD00E39693 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DDC87CDD1D3388BD00E39693 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = YOSWebViewCacheURLProtocol/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yangyangmd5.www.YOSWebViewCacheURLProtocol;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DDC87CDE1D3388BD00E39693 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = YOSWebViewCacheURLProtocol/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yangyangmd5.www.YOSWebViewCacheURLProtocol;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		DDC87CE01D3388BD00E39693 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = YOSWebViewCacheURLProtocolTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yangyangmd5.www.YOSWebViewCacheURLProtocolTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YOSWebViewCacheURLProtocol.app/YOSWebViewCacheURLProtocol";
+			};
+			name = Debug;
+		};
+		DDC87CE11D3388BD00E39693 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = YOSWebViewCacheURLProtocolTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yangyangmd5.www.YOSWebViewCacheURLProtocolTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YOSWebViewCacheURLProtocol.app/YOSWebViewCacheURLProtocol";
+			};
+			name = Release;
+		};
+		DDC87CE31D3388BD00E39693 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = YOSWebViewCacheURLProtocolUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yangyangmd5.www.YOSWebViewCacheURLProtocolUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = YOSWebViewCacheURLProtocol;
+			};
+			name = Debug;
+		};
+		DDC87CE41D3388BD00E39693 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = YOSWebViewCacheURLProtocolUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yangyangmd5.www.YOSWebViewCacheURLProtocolUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = YOSWebViewCacheURLProtocol;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DDC87CAA1D3388BD00E39693 /* Build configuration list for PBXProject "YOSWebViewCacheURLProtocol" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDC87CDA1D3388BD00E39693 /* Debug */,
+				DDC87CDB1D3388BD00E39693 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DDC87CDC1D3388BD00E39693 /* Build configuration list for PBXNativeTarget "YOSWebViewCacheURLProtocol" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDC87CDD1D3388BD00E39693 /* Debug */,
+				DDC87CDE1D3388BD00E39693 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DDC87CDF1D3388BD00E39693 /* Build configuration list for PBXNativeTarget "YOSWebViewCacheURLProtocolTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDC87CE01D3388BD00E39693 /* Debug */,
+				DDC87CE11D3388BD00E39693 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DDC87CE21D3388BD00E39693 /* Build configuration list for PBXNativeTarget "YOSWebViewCacheURLProtocolUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDC87CE31D3388BD00E39693 /* Debug */,
+				DDC87CE41D3388BD00E39693 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DDC87CA71D3388BD00E39693 /* Project object */;
+}
