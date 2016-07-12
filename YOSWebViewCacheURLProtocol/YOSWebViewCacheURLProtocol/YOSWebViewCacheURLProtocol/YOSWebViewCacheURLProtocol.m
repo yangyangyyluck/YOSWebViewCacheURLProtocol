@@ -83,14 +83,6 @@ static NSMutableDictionary *httpHeaders;
         
         NSString *path = [YOSWebViewCacheURLProtocol _requestPath:self.request];
         
-        if ([path.lastPathComponent isEqualToString:@"aaaajd"]) {
-            NSLog(@"aaaajd");
-        }
-        
-        if ([path.lastPathComponent isEqualToString:@"aaaa360buy"]) {
-            NSLog(@"aaaa360buy");
-        }
-        
         YOSWebViewCache *cache = [YOSWebViewCacheURLProtocol _getCache:path];
         
         [self _dealWithCache:cache];
@@ -126,7 +118,7 @@ static NSMutableDictionary *httpHeaders;
         // must use mutableCopyWorkaround
         NSMutableURLRequest *redirectableRequest = [request yos_mutableCopyWorkaround];
         
-        // self.request = origin URL    like http://www.360buy.com  360buy will redirect to jd
+        // self.request = origin URL    like http://www.360buy.com  360buy.com will redirect to jd.com
         // request = modify URL         like http://www.jd.com
         // must use self.request
         NSString *cachePath = [YOSWebViewCacheURLProtocol _requestPath:self.request];
