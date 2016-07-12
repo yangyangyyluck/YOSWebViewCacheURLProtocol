@@ -337,7 +337,16 @@ static NSMutableDictionary *httpHeaders;
 
 + (NSString *)_requestPath:(NSURLRequest *)request {
     
-    NSString *path = request.URL.absoluteString.yos_sha1;
+    NSString *URLString = request.URL.absoluteString;
+    
+    if (request.HTTPBody) {
+        NSString *param = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
+        if (param.length) {
+            URLString = [URLString stringByAppendingString:param];
+        }
+    }
+    
+    NSString *path = URLString.yos_sha1;
     
     if ([self _isImage:request]) {
         path = [[self _imagePath] stringByAppendingPathComponent:path];

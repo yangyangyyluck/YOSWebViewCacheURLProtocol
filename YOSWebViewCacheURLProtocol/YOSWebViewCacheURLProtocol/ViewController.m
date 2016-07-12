@@ -28,7 +28,7 @@
     self.webView.frame = CGRectMake(0, 0, size.width, size.height);
     [self.view addSubview:self.webView];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.360buy.com"]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.zhihu.com"]];
     [self.webView loadRequest:request];
     
     self.button = [UIButton new];
