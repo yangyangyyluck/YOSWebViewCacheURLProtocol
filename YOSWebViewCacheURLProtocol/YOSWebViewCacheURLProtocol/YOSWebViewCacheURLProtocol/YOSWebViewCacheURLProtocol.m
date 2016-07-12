@@ -10,41 +10,11 @@
 #import "Reachability.h"
 #import "NSString+YOSCrypto.h"
 #import "YOSWebViewCache.h"
+#import "NSURLRequest+YOSMutableCopyWorkaround.h"
 
 #define YOSWebViewCacheURLProtocolCachePath [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"YOSWebViewCacheURLProtocolCachePath"]
 
-static NSString *const YOSWebViewCacheURLProtocolHasHandledKey = @"YOSWebViewCacheURLProtocolHasHandledKey";
-
-#define WORKAROUND_MUTABLE_COPY_LEAK 1
-
-#if WORKAROUND_MUTABLE_COPY_LEAK
-// required to workaround http://openradar.appspot.com/11596316
-@interface NSURLRequest(MutableCopyWorkaround)
-
-- (id) mutableCopyWorkaround;
-
-@end
-
-@implementation NSURLRequest(MutableCopyWorkaround)
-
-- (id) mutableCopyWorkaround {
-    NSMutableURLRequest *mutableURLRequest = [[NSMutableURLRequest alloc] initWithURL:[self URL]
-                                                                          cachePolicy:[self cachePolicy]
-                                                                      timeoutInterval:[self timeoutInterval]];
-    [mutableURLRequest setAllHTTPHeaderFields:[self allHTTPHeaderFields]];
-    if ([self HTTPBodyStream]) {
-        [mutableURLRequest setHTTPBodyStream:[self HTTPBodyStream]];
-    } else {
-        [mutableURLRequest setHTTPBody:[self HTTPBody]];
-    }
-    [mutableURLRequest setHTTPMethod:[self HTTPMethod]];
-    
-    return mutableURLRequest;
-}
-
-@end
-
-#endif
+static NSString *const YOSHasHandledKey = @"YOSHasHandledKey";
 
 static NSSet *supportedSchemes;
 static dispatch_queue_t ioQueue;
@@ -89,13 +59,9 @@ static NSMutableDictionary *httpHeaders;
     
     if ([self _canUseCache:request]) {
         
-        BOOL hasHandled = [NSURLProtocol propertyForKey:YOSWebViewCacheURLProtocolHasHandledKey inRequest:request];
+        BOOL needHandled = ![NSURLProtocol propertyForKey:YOSHasHandledKey inRequest:request];
         
-        if (hasHandled) {
-            return NO;
-        } else {
-            return YES;
-        }
+        return needHandled;
         
     } else {
         return NO;
@@ -104,9 +70,7 @@ static NSMutableDictionary *httpHeaders;
 }
 
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request {
-    // can do some additions for http headerfield
     return request;
-//    return [self _requestWithAdditionHeaders:request];
 }
 
 - (void)startLoading {
@@ -117,14 +81,24 @@ static NSMutableDictionary *httpHeaders;
     BOOL status2 =  ([YOSWebViewCacheURLProtocol _isImage:self.request] && [YOSWebViewCacheURLProtocol _isCached:self.request]);
     if (status1 || status2) {
         
-        YOSWebViewCache *cache = [YOSWebViewCacheURLProtocol _getCache:[YOSWebViewCacheURLProtocol _requestPath:self.request]];
+        NSString *path = [YOSWebViewCacheURLProtocol _requestPath:self.request];
+        
+        if ([path.lastPathComponent isEqualToString:@"aaaajd"]) {
+            NSLog(@"aaaajd");
+        }
+        
+        if ([path.lastPathComponent isEqualToString:@"aaaa360buy"]) {
+            NSLog(@"aaaa360buy");
+        }
+        
+        YOSWebViewCache *cache = [YOSWebViewCacheURLProtocol _getCache:path];
         
         [self _dealWithCache:cache];
         
     } else {    // request
         NSMutableURLRequest *connectionRequest = [YOSWebViewCacheURLProtocol _requestWithAdditionHeaders:self.request];
         
-        [YOSWebViewCacheURLProtocol setProperty:@YES forKey:YOSWebViewCacheURLProtocolHasHandledKey inRequest:connectionRequest];
+        [YOSWebViewCacheURLProtocol setProperty:@YES forKey:YOSHasHandledKey inRequest:connectionRequest];
         
         NSURLConnection *connection = [NSURLConnection connectionWithRequest:connectionRequest
                                                                     delegate:self];
@@ -145,8 +119,16 @@ static NSMutableDictionary *httpHeaders;
 {
     // Thanks to Nick Dowell https://gist.github.com/1885821
     if (response != nil) {
-        NSMutableURLRequest *redirectableRequest = [request mutableCopyWorkaround];
         
+        // important!
+        // mutableCopy make custom handledkey like origin request
+        // mutableCopyWorkaround make custom handledkey resume
+        // must use mutableCopyWorkaround
+        NSMutableURLRequest *redirectableRequest = [request yos_mutableCopyWorkaround];
+        
+        // self.request = origin URL    like http://www.360buy.com  360buy will redirect to jd
+        // request = modify URL         like http://www.jd.com
+        // must use self.request
         NSString *cachePath = [YOSWebViewCacheURLProtocol _requestPath:self.request];
         
         YOSWebViewCache *cache = [YOSWebViewCache new];
@@ -155,13 +137,9 @@ static NSMutableDictionary *httpHeaders;
         cache.data = self.data;
         cache.redirectRequest = redirectableRequest;
         
-        BOOL hasHandled = [YOSWebViewCacheURLProtocol propertyForKey:YOSWebViewCacheURLProtocolHasHandledKey inRequest:request];
+        NSString *log = [NSString stringWithFormat:@"\r\rpropertyForKey in willSendRequest redirectRequest %@ ---  \r\r", redirectableRequest];
         
-        BOOL hasHandled2 = [YOSWebViewCacheURLProtocol propertyForKey:YOSWebViewCacheURLProtocolHasHandledKey inRequest:redirectableRequest];
-        
-//        [YOSWebViewCacheURLProtocol setProperty:@NO forKey:YOSWebViewCacheURLProtocolHasHandledKey inRequest:redirectableRequest];
-        
-        NSLog(@"\r\rpropertyForKey in willSendRequest 1:%zi --- 2:%zi \r\r", hasHandled, hasHandled2);
+        [self _log:log];
         
         [YOSWebViewCacheURLProtocol _saveCache:cache path:cachePath];
         
@@ -215,13 +193,10 @@ static NSMutableDictionary *httpHeaders;
     if (cache) {
         NSData *data = cache.data;;
         NSURLResponse *response = cache.response;
-        NSMutableURLRequest *redirectRequest = [cache.redirectRequest mutableCopyWorkaround];
+        NSURLRequest *redirectRequest = cache.redirectRequest;
         
-//        [YOSWebViewCacheURLProtocol setProperty:@"god" forKey:YOSWebViewCacheURLProtocolHasHandledKey inRequest:redirectRequest];
-        
-        BOOL hasHandled = [YOSWebViewCacheURLProtocol propertyForKey:YOSWebViewCacheURLProtocolHasHandledKey inRequest:redirectRequest];
-        
-        NSLog(@"\r\rpropertyForKey in _dealWithCache 1:%zi ---  \r\r", hasHandled);
+        NSString *log = [NSString stringWithFormat:@"\r\rpropertyForKey in _dealWithCache redirectRequest %@ ---  \r\r", redirectRequest];
+        [self _log:log];
         
         if (redirectRequest) {
             [[self client] URLProtocol:self wasRedirectedToRequest:redirectRequest redirectResponse:response];
@@ -248,19 +223,15 @@ static NSMutableDictionary *httpHeaders;
     
 }
 
+- (void)_log:(NSString *)string {
+//    NSLog(@"%@", string);
+}
+
 #pragma mark - private methods+
 
 + (NSMutableURLRequest *)_requestWithAdditionHeaders:(NSURLRequest *)request {
     
-    BOOL hasHandled = [YOSWebViewCacheURLProtocol propertyForKey:YOSWebViewCacheURLProtocolHasHandledKey inRequest:request];
-    
-    NSMutableURLRequest *connectionRequest = nil;
-    
-    if (WORKAROUND_MUTABLE_COPY_LEAK) {
-        connectionRequest = [request mutableCopyWorkaround];
-    } else {
-        connectionRequest = [request mutableCopy];
-    }
+    NSMutableURLRequest *connectionRequest = [request yos_mutableCopyWorkaround];;
     
     [[YOSWebViewCacheURLProtocol httpHeaders] enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL * _Nonnull stop) {
         
@@ -375,11 +346,6 @@ static NSMutableDictionary *httpHeaders;
 + (NSString *)_requestPath:(NSURLRequest *)request {
     
     NSString *path = request.URL.absoluteString.yos_sha1;
-//    NSString *path = request.URL.absoluteString.lastPathComponent;
-//    [path stringByReplacingOccurrencesOfString:@":" withString:@"_"];
-//    [path stringByReplacingOccurrencesOfString:@"/" withString:@"_"];
-//    [path stringByReplacingOccurrencesOfString:@"?" withString:@"__"];
-//    [path stringByReplacingOccurrencesOfString:@"." withString:@"___"];
     
     if ([self _isImage:request]) {
         path = [[self _imagePath] stringByAppendingPathComponent:path];
@@ -393,18 +359,19 @@ static NSMutableDictionary *httpHeaders;
 #pragma mark - YOSWebViewCache
 
 + (YOSWebViewCache * __nullable)_getCache:(NSString *)path {
+    
     __block YOSWebViewCache *cache;
-//    dispatch_sync([YOSWebViewCacheURLProtocol ioQueue], ^{
+    dispatch_sync([YOSWebViewCacheURLProtocol ioQueue], ^{
          cache = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-//    });
+    });
     
     return cache;
 }
 
 + (void)_saveCache:(YOSWebViewCache *)cache path:(NSString *)cachePath {
-//    dispatch_async([YOSWebViewCacheURLProtocol ioQueue], ^{
+    dispatch_async([YOSWebViewCacheURLProtocol ioQueue], ^{
         [NSKeyedArchiver archiveRootObject:cache toFile:cachePath];
-//    });
+    });
 }
 
 #pragma mark - getter & setter

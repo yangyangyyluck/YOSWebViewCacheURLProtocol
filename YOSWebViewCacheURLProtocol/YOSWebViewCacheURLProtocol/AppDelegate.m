@@ -19,8 +19,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    //    [YOSWebViewCacheURLProtocol clearRecentCache];
-//    [YOSWebViewCacheURLProtocol additionHttpHeaders:@{@"countryyyyyyyy" : @"uk"}];
+        [YOSWebViewCacheURLProtocol clearRecentCache];
+    [YOSWebViewCacheURLProtocol additionHttpHeaders:@{@"countryyyyyyyy" : @"uk"}];
     [NSURLProtocol registerClass:[YOSWebViewCacheURLProtocol class]];
     
     return YES;

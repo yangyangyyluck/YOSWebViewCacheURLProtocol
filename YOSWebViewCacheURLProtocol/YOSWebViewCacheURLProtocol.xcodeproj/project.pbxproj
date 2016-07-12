@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD30912A1D349D2B00CBE5A9 /* NSURLRequest+YOSMutableCopyWorkaround.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3091291D349D2B00CBE5A9 /* NSURLRequest+YOSMutableCopyWorkaround.m */; };
 		DDC87CB41D3388BD00E39693 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC87CB31D3388BD00E39693 /* main.m */; };
 		DDC87CB71D3388BD00E39693 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC87CB61D3388BD00E39693 /* AppDelegate.m */; };
 		DDC87CBA1D3388BD00E39693 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC87CB91D3388BD00E39693 /* ViewController.m */; };
@@ -39,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DD3091281D349D2B00CBE5A9 /* NSURLRequest+YOSMutableCopyWorkaround.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+YOSMutableCopyWorkaround.h"; sourceTree = "<group>"; };
+		DD3091291D349D2B00CBE5A9 /* NSURLRequest+YOSMutableCopyWorkaround.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+YOSMutableCopyWorkaround.m"; sourceTree = "<group>"; };
 		DDC87CAF1D3388BD00E39693 /* YOSWebViewCacheURLProtocol.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YOSWebViewCacheURLProtocol.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDC87CB31D3388BD00E39693 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DDC87CB51D3388BD00E39693 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -164,6 +167,8 @@
 				DDC87CEB1D3388E600E39693 /* YOSWebViewCache.m */,
 				DDC87CEC1D3388E600E39693 /* YOSWebViewCacheURLProtocol.h */,
 				DDC87CED1D3388E600E39693 /* YOSWebViewCacheURLProtocol.m */,
+				DD3091281D349D2B00CBE5A9 /* NSURLRequest+YOSMutableCopyWorkaround.h */,
+				DD3091291D349D2B00CBE5A9 /* NSURLRequest+YOSMutableCopyWorkaround.m */,
 			);
 			path = YOSWebViewCacheURLProtocol;
 			sourceTree = "<group>";
@@ -304,6 +309,7 @@
 				DDC87CEE1D3388E600E39693 /* NSString+YOSCrypto.m in Sources */,
 				DDC87CB41D3388BD00E39693 /* main.m in Sources */,
 				DDC87CEF1D3388E600E39693 /* Reachability.m in Sources */,
+				DD30912A1D349D2B00CBE5A9 /* NSURLRequest+YOSMutableCopyWorkaround.m in Sources */,
 				DDC87CF11D3388E600E39693 /* YOSWebViewCacheURLProtocol.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
