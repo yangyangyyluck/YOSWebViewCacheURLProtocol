@@ -36,23 +36,25 @@ static NSMutableDictionary *httpHeaders;
 @implementation YOSWebViewCacheURLProtocol
 
 + (void)initialize {
-    if ([YOSWebViewCacheURLProtocol class] == self) {
-        
-        if (![[NSFileManager defaultManager] fileExistsAtPath:[self _imagePath]]) {
-            [[NSFileManager defaultManager] createDirectoryAtPath:[self _imagePath] withIntermediateDirectories:YES attributes:nil error:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([YOSWebViewCacheURLProtocol class] == self) {
+            
+            if (![[NSFileManager defaultManager] fileExistsAtPath:[self _imagePath]]) {
+                [[NSFileManager defaultManager] createDirectoryAtPath:[self _imagePath] withIntermediateDirectories:YES attributes:nil error:nil];
+            }
+            
+            if (![[NSFileManager defaultManager] fileExistsAtPath:[self _otherPath]]) {
+                [[NSFileManager defaultManager] createDirectoryAtPath:[self _otherPath] withIntermediateDirectories:YES attributes:nil error:nil];
+            }
+            
+            [self supportedSchemes];
+            [self ioQueue];
+            [self fileManager];
+            
+            NSLog(@"%@", [self _imagePath]);
+            
         }
-        
-        if (![[NSFileManager defaultManager] fileExistsAtPath:[self _otherPath]]) {
-            [[NSFileManager defaultManager] createDirectoryAtPath:[self _otherPath] withIntermediateDirectories:YES attributes:nil error:nil];
-        }
-        
-        [self supportedSchemes];
-        [self ioQueue];
-        [self fileManager];
-        
-        NSLog(@"%@", [self _imagePath]);
-        
-    }
+    });
 }
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
