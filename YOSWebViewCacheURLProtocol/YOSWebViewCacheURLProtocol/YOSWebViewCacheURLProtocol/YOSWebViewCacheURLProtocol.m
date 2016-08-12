@@ -248,7 +248,7 @@ static NSMutableDictionary *httpHeaders;
 }
 
 + (BOOL)_isNetworkReachable:(NSURLRequest *)request {
-    BOOL reachable = (BOOL) [[Reachability reachabilityWithHostName:request.URL.scheme] currentReachabilityStatus] != NotReachable;
+    BOOL reachable = (BOOL) [[Reachability reachabilityWithHostName:request.URL.host] currentReachabilityStatus] != NotReachable;
     
     return reachable;
 }
