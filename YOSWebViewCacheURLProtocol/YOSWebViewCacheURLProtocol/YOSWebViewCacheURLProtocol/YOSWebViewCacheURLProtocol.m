@@ -308,7 +308,7 @@ static NSMutableDictionary *httpHeaders;
 + (BOOL)_isWebView:(NSURLRequest *)request {
     NSString *userAgent = [request valueForHTTPHeaderField:@"User-Agent"];
     
-    if ([userAgent rangeOfString:@"AppleWebKit"].location != NSNotFound) {
+    if (userAgent && [userAgent rangeOfString:@"AppleWebKit"].location != NSNotFound) {
         return YES;
     } else {
         return NO;
