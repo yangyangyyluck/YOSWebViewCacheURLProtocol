@@ -158,14 +158,19 @@ static NSMutableDictionary *httpHeaders;
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     [[self client] URLProtocolDidFinishLoading:self];
     
-    NSString *cachePath = [YOSWebViewCacheURLProtocol _requestPath:self.request];
-    
-    YOSWebViewCache *cache = [YOSWebViewCache new];
-    cache.date = [NSDate date];
-    cache.response = self.response;
-    cache.data = self.data;
-
-    [YOSWebViewCacheURLProtocol _saveCache:cache path:cachePath];
+    // only cache http status code = 200
+    NSHTTPURLResponse *response = (NSHTTPURLResponse *)self.response;
+    if ([response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
+        
+        NSString *cachePath = [YOSWebViewCacheURLProtocol _requestPath:self.request];
+        
+        YOSWebViewCache *cache = [YOSWebViewCache new];
+        cache.date = [NSDate date];
+        cache.response = self.response;
+        cache.data = self.data;
+        
+        [YOSWebViewCacheURLProtocol _saveCache:cache path:cachePath];
+    }
     
     self.connection = nil;
     self.data = nil;
