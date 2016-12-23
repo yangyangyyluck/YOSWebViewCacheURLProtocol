@@ -68,7 +68,7 @@ static NSMutableDictionary *httpHeaders;
     } else {
         return NO;
     }
-
+    
 }
 
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request {
@@ -85,9 +85,12 @@ static NSMutableDictionary *httpHeaders;
         
         NSString *path = [YOSWebViewCacheURLProtocol _requestPath:self.request];
         
-        YOSWebViewCache *cache = [YOSWebViewCacheURLProtocol _getCache:path];
+        void (^block)(YOSWebViewCache *cache) = ^(YOSWebViewCache *cache) {
+            [self _dealWithCache:cache];
+        };
         
-        [self _dealWithCache:cache];
+        [YOSWebViewCacheURLProtocol _getCache:path completionBlock:block];
+        
         
     } else {    // request
         NSMutableURLRequest *connectionRequest = [YOSWebViewCacheURLProtocol _requestWithAdditionHeaders:self.request];
@@ -120,7 +123,7 @@ static NSMutableDictionary *httpHeaders;
         // must use mutableCopyWorkaround
         NSMutableURLRequest *redirectableRequest = [request yos_mutableCopyWorkaround];
         
-        // self.request = origin URL    like http://www.360buy.com  360buy.com will redirect to jd.com
+        // self.request = origin URL    like http://www.360buy.com  360buy will redirect to jd
         // request = modify URL         like http://www.jd.com
         // must use self.request
         NSString *cachePath = [YOSWebViewCacheURLProtocol _requestPath:self.request];
@@ -158,7 +161,7 @@ static NSMutableDictionary *httpHeaders;
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     [[self client] URLProtocolDidFinishLoading:self];
     
-    // only cache http status code = 200
+    // only cached http status code = 200
     NSHTTPURLResponse *response = (NSHTTPURLResponse *)self.response;
     if ([response isKindOfClass:[NSHTTPURLResponse class]] && response.statusCode == 200) {
         
@@ -223,7 +226,7 @@ static NSMutableDictionary *httpHeaders;
 }
 
 - (void)_log:(NSString *)string {
-//    NSLog(@"%@", string);
+    //    NSLog(@"%@", string);
 }
 
 #pragma mark - private methods+
@@ -242,8 +245,9 @@ static NSMutableDictionary *httpHeaders;
 }
 
 + (BOOL)_canUseCache:(NSURLRequest *)request {
-
+    
     // webview use cache
+    // only cache image
     if ([self _isSupportedSchemes:request] && [self _isWebView:request]) {
         return YES;
     } else {
@@ -259,7 +263,7 @@ static NSMutableDictionary *httpHeaders;
 }
 
 + (BOOL)_isSupportedSchemes:(NSURLRequest *)request {
-
+    
     NSString *scheme = request.URL.scheme.lowercaseString;
     
     if ([self.supportedSchemes containsObject:scheme]) {
@@ -288,7 +292,6 @@ static NSMutableDictionary *httpHeaders;
                  @"tga",
                  @"exif",
                  @"fpx",
-                 @"svg",
                  @"psd",
                  @"cdr",
                  @"pcd",
@@ -366,14 +369,14 @@ static NSMutableDictionary *httpHeaders;
 
 #pragma mark - YOSWebViewCache
 
-+ (YOSWebViewCache * __nullable)_getCache:(NSString *)path {
++ (void)_getCache:(NSString *)path completionBlock:(void (^)(YOSWebViewCache *cache))block {
     
-    __block YOSWebViewCache *cache;
-    dispatch_sync([YOSWebViewCacheURLProtocol ioQueue], ^{
-         cache = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    dispatch_async([YOSWebViewCacheURLProtocol ioQueue], ^{
+        YOSWebViewCache *cache = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+        if (block) {
+            block(cache);
+        }
     });
-    
-    return cache;
 }
 
 + (void)_saveCache:(YOSWebViewCache *)cache path:(NSString *)cachePath {
@@ -394,7 +397,7 @@ static NSMutableDictionary *httpHeaders;
 
 + (dispatch_queue_t)ioQueue {
     if (!ioQueue) {
-        ioQueue = dispatch_queue_create("com.yoswebviewcache.serial", DISPATCH_QUEUE_SERIAL);
+        ioQueue = dispatch_queue_create("com.yoswebviewcache.concurrent", DISPATCH_QUEUE_CONCURRENT);
     }
     
     return ioQueue;
@@ -423,18 +426,16 @@ static NSMutableDictionary *httpHeaders;
 }
 
 + (void)clearAllCache {
-    
     dispatch_async([self ioQueue], ^{
         [[self fileManager] removeItemAtPath:YOSWebViewCacheURLProtocolCachePath error:nil];
     });
-    
 }
 
 + (void)clearRecentCache {
     
     // remove cache before seven day
     NSTimeInterval interval = (3600 * 24 * -7);
-
+    
     NSDate *date = [[NSDate date] dateByAddingTimeInterval:interval];
     
     NSDirectoryEnumerator *enumerator = [[self fileManager] enumeratorAtPath:YOSWebViewCacheURLProtocolCachePath];
@@ -443,15 +444,17 @@ static NSMutableDictionary *httpHeaders;
         for (NSString *path in enumerator) {
             NSString *completePath = [YOSWebViewCacheURLProtocolCachePath stringByAppendingPathComponent:path];
             
-            YOSWebViewCache *cache = [self _getCache:completePath];
+            void (^block)(YOSWebViewCache *cache) = ^(YOSWebViewCache *cache) {
+                if ([cache.date compare:date] == NSOrderedAscending) {
+                    
+                    dispatch_async([self ioQueue], ^{
+                        [[self fileManager] removeItemAtPath:completePath error:nil];
+                    });
+                    
+                }
+            };
             
-            if ([cache.date compare:date] == NSOrderedAscending) {
-                
-                dispatch_async([self ioQueue], ^{
-                    [[self fileManager] removeItemAtPath:completePath error:nil];
-                });
-                
-            }
+            [self _getCache:completePath completionBlock:block];
         }
     });
     
